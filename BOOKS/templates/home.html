@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS styles */
+        body {
+            font-family: 'Alegreya', serif; /* Apply Alegreya font with a fallback to serif */
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 60px; /* Set header height */
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 100px auto; /* Center the container and adjust margin */
+            background-color: #f2f2f2;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 128, 128, 0.5); 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            transition: box-shadow 0.3s ease; 
+        }
+
+        .container:hover {
+            box-shadow: 0 0 20px rgba(0, 128, 128, 0.8); 
+        }
+
+        {% comment %} .container h1 {
+            margin: 0;
+            font-size: 24px; /* Decrease font size */
+            color: #222; /* Adjust text color for better contrast */
+        } {% endcomment %}
+        .container h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #222;
+            text-transform: uppercase;
+        }
+
+        .login-register {
+            flex: 1; /* Let the form take up remaining space */
+            margin-left: 20px; /* Add some space between title and form */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #222; /* Adjust text color for better contrast */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            height: 60px; /* Set footer height */
+            background-color: #f2f2f2;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Blank header -->
+    </header>
+    <div class="container">
+        <h1>Library<br>Management<br>System</h1>
+        <div class="login-register">
+            <h2>Login</h2>
+            <form method="post" action="{% url 'BOOKS:user_login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="{% url 'BOOKS:register' %}">Register here</a></p>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024, Rohit Patiballa, Library Management System
+    </footer>
+</body>
+</html>

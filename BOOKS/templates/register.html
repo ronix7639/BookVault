@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'books/styles.css' %}">
+    <style>
+        /* Additional styles for register.html */
+
+        /* Container styles */
+        .container {
+            max-width: 700px; 
+            margin: 70px auto 50px; /* Adjusted margin values */
+            background-color: #f2f2f2; /* Change background color to match the page */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 128, 128, 0.5); /* Teal glow effect */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+        }
+
+        /* Container hover effect */
+        .container:hover {
+            box-shadow: 0 0 20px rgba(0, 128, 128, 0.8); /* Increase glow effect on hover */
+        }
+
+        /* Title styles */
+        .container h1 {
+            margin-bottom: 10px; /* Reduced header size */
+            color: #333; /* Title color */
+            font-family: 'Alegreya', sans-serif; /* Apply Alegreya font */
+            font-size: 28px; /* Reduced font size */
+        }
+
+        /* Form styles */
+        form {
+            width: 100%;
+            max-width: 400px; /* Limit form width for better readability */
+        }
+
+        /* Input styles */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px; /* Add space between inputs */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Alegreya', sans-serif; /* Apply Alegreya font */
+        }
+
+        /* Button styles */
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Alegreya', sans-serif; /* Apply Alegreya font */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Message styles */
+        p {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Link styles */
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer styles */
+        footer {
+            margin-top: 50px; /* Add space after container near footer */
+            text-align: center;
+            font-size: 14px; /* Adjust font size for footer */
+            color: #666; /* Adjust color for footer */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <p>Already have an account? <a href="{% url 'BOOKS:user_login' %}">Login here</a></p>
+    </div>
+    <footer>
+        &copy; 2024, Rohit Patiballa, Library Management System
+    </footer>
+</body>
+</html>
