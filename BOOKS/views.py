@@ -93,7 +93,7 @@ def register(request):
 
 def user_logout(request):
     auth_logout(request)
-    messages.success(request, 'Logged out successfully.')
+    messages.success(request, 'Logged out successfully.') #login successful 
     return redirect('BOOKS:user_login')
 
 @login_required
