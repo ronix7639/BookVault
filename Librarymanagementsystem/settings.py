@@ -84,5 +84,6 @@ LOGIN_REDIRECT_URL = '/dashboard/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = 'D:\Rohit\Career\My Projects\Python\LibraryManagementSystem\static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
