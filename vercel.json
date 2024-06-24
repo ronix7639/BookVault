@@ -1,13 +1,33 @@
 {
-    "builds": [{
+    "builds": [
+      {
         "src": "LibraryManagementSystem/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    }],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "LibraryManagementSystem/wsgi.py"
+        "config": {
+          "maxLambdaSize": "15mb",
+          "runtime": "python3.9"
         }
-    ]
-}
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "static/$1"
+      },
+      {
+        "src": "/media/(.*)",
+        "dest": "media/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "LibraryManagementSystem/wsgi.py"
+      }
+    ],
+    "env": {
+      "DJANGO_SETTINGS_MODULE": "LibraryManagementSystem.settings.production",
+      "SECRET_KEY": "<your-secret-key>",
+      "DEBUG": "false",
+      "ALLOWED_HOSTS": "*.vercel.app"
+    }
+  }
+  
