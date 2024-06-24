@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+<style>
+    body {
+        font-family: 'Alegreya', Arial, sans-serif;
+        background-color: #1a1a1a;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        background-color: #2c2c2c;
+        padding: 30px 20px;
+        margin-top: 20px;
+        margin-bottom: 100px;
+        border-radius: 18px;
+        max-width: 600px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 0 10px rgba(0, 128, 128, 0.5);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+        box-shadow: 0 0 20px rgba(0, 128, 128, 0.8); /* Increase glow effect on hover */
+    }
+
+    h2 {
+        text-align: center;
+        color: #87CEEB;
+        font-size: 28px;
+        margin-bottom: 20px;
+        text-decoration: underline; /* Added underline */
+        font-weight: bold; /* Added bold */
+        text-transform: uppercase; /* Capitalize */
+    }
+
+    form {
+        text-align: center; /* Center align the form */
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: #87CEEB; /* Set label color to match header */
+    }
+
+    form input[type="file"],
+    form input[type="text"],
+    form input[type="number"],
+    form select {
+        width: calc(100% - 22px); /* Adjust the width calculation */
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: #444;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    form button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-family: 'Alegreya', Arial, sans-serif;
+        font-size: 18px;
+        border-radius: 5px;
+    }
+
+    form button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 style="color: #87CEEB; text-align: center; font-size: 24px; font-weight: bold; text-decoration: underline;">IMPORT YOUR BOOKS</h2> 
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="id_csv_file" style="color: #87CEEB; font-size: 20px;">Select CSV File:</label>
+        {{ form.csv_file }}
+        <button type="submit">IMPORT</button>
+    </form>
+</div>
+{% endblock %}

@@ -24,3 +24,6 @@ class UserLoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+class ImportBooksForm(forms.Form):
+    csv_file = forms.FileField(label='Select a CSV file')

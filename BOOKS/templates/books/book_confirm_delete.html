@@ -1,10 +1,76 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<style>
+    .container {
+        background-color: #2c2c2c;
+        padding: 20px 20px;
+        border-radius: 18px;
+        max-width: 500px;
+        max-height: 400px;
+        width: 90%;
+        box-shadow: 0 0 10px rgba(0, 128, 128, 0.5);
+        transition: box-shadow 0.3s ease;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        margin-left: 200px;
+        margin-right:200px;
+        text-align: center;
+        color: #87CEEB;
+    }
+
+    .container:hover {
+        box-shadow: 0 0 20px rgba(0, 128, 128, 0.8); /* Increase glow effect on hover */
+    }
+
+    .logout-button {
+        padding: 10px 20px;
+        background-color: #007bff; /* Changed background color */
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-family: 'Alegreya', Arial, sans-serif;
+        font-size: 16px;
+        border-radius: 5px; /* Added border-radius */
+    }
+
+    .logout-button a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .logout-button:hover {
+        background-color: #0056b3; /* Darker color on hover */
+    }
+
+    h2 {
+        color: #87CEEB;
+    }
+
+    button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Alegreya', Arial, sans-serif;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container">
     <h2>Are you sure you want to delete "{{ book.title }}"?</h2>
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="logout-button">Confirm</button>
-        <a href="{% url 'BOOKS:book_list' %}" class="logout-button">Cancel</a>
+        <button type="submit" name="confirm_delete" class="logout-button">Confirm</button>
+        <span style="margin: 0 10px;"></span>
+        <a href="{% url 'BOOKS:dashboard' %}" class="logout-button">Cancel</a>
     </form>
+</div>
 {% endblock %}

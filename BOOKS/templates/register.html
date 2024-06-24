@@ -5,17 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <!-- Load Google Fonts -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'books/styles.css' %}">
     <style>
         /* Additional styles for register.html */
 
+        /* Body styles */
+        body {
+            font-family: 'Alegreya', serif; /* Apply Alegreya font with a fallback to serif */
+            background-color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            color: #87CEEB; /* Default text color */
+        }
+
         /* Container styles */
         .container {
             max-width: 700px; 
-            margin: 70px auto 50px; /* Adjusted margin values */
-            background-color: #f2f2f2; /* Change background color to match the page */
+            margin: 100px auto; /* Adjusted margin values */
+            background-color: #2c2c2c; /* Change background color to match the page */
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 128, 128, 0.5); /* Teal glow effect */
@@ -34,9 +43,11 @@
         /* Title styles */
         .container h1 {
             margin-bottom: 10px; /* Reduced header size */
-            color: #333; /* Title color */
+            color: #87CEEB; /* Title color */
             font-family: 'Alegreya', sans-serif; /* Apply Alegreya font */
             font-size: 28px; /* Reduced font size */
+            text-transform: uppercase; /* Uppercase title */
+            text-decoration:underline;
         }
 
         /* Form styles */
@@ -53,6 +64,8 @@
             margin-bottom: 15px; /* Add space between inputs */
             border: 1px solid #ccc;
             border-radius: 5px;
+            background-color: #1a1a1a; /* Input background color */
+            color: #fff; /* Text color inside input fields */
             font-family: 'Alegreya', sans-serif; /* Apply Alegreya font */
         }
 
@@ -62,6 +75,7 @@
             padding: 10px 20px;
             background-color: #007bff;
             color: #fff;
+            font-size: 16px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -76,6 +90,7 @@
         p {
             margin-top: 10px;
             text-align: center;
+            color: #87CEEB; /* Adjusted text color for better contrast */
         }
 
         /* Link styles */
@@ -92,28 +107,30 @@
         footer {
             margin-top: 50px; /* Add space after container near footer */
             text-align: center;
-            font-size: 14px; /* Adjust font size for footer */
-            color: #666; /* Adjust color for footer */
+            font-size: 18px; /* Adjust font size for footer */
+            color: #87CEEB; /* Text color for footer */
+            height: 30px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Register</h1>
+        <h1>REGISTER HERE</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Register</button>
         </form>
-        {% if messages %}
-            {% for message in messages %}
-                <p style="color: red;">{{ message }}</p>
-            {% endfor %}
+        {% if registered %}
+            <script>
+                alert("Registration successful.");
+                window.location.href = "{% url 'BOOKS:user_login' %}";
+            </script>
         {% endif %}
-        <p>Already have an account? <a href="{% url 'BOOKS:user_login' %}">Login here</a></p>
+        <p style="font-size: 18px; font-style: italic;">Already have an account? <a href="{% url 'BOOKS:user_login' %}">Login here</a></p>
     </div>
     <footer>
-        &copy; 2024, Rohit Patiballa, Library Management System
+        &copy; 2024, Rohit Patiballa, BOOK VAULT
     </footer>
 </body>
 </html>

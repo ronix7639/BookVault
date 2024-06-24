@@ -1,45 +1,45 @@
+import os
+import csv
 from django.core.management.base import BaseCommand
 from BOOKS.models import Book
-import csv
 
 class Command(BaseCommand):
-    help = 'Import books from a CSV file'
+    help = 'Import books from CSV'
 
     def add_arguments(self, parser):
         parser.add_argument('csv_file', type=str, help='Path to the CSV file')
+        parser.add_argument('user', type=str, help='Username of the user')
 
     def handle(self, *args, **kwargs):
         csv_file = kwargs['csv_file']
+        user = kwargs['user']
 
+        # Your CSV reading and book creation logic
+        # Example:
         with open(csv_file, 'r', encoding='utf-8') as file:
-            reader = csv.DictReader(file, delimiter='\t')
-            for row in reader:
-                title = row.get('title')
-                author = row.get('author')
-                category = row.get('category')
-                isbn = row.get('isbn')
-                quantity = row.get('quantity')
+            csv_reader = csv.DictReader(file)
+            for row in csv_reader:
+                title = row['Title']
+                author = row['Author']
+                category = row['Category']
+                isbn = row['ISBN']
+                quantity = row['Quantity']
 
-                # Check if the quantity value is missing
-                if not quantity:
-                    self.stdout.write(self.style.WARNING(f"Missing quantity value for book '{title}'"))
-                    continue
+                # Create or update book associated with the user
+                book, created = Book.objects.update_or_create(
+                    title=title,
+                    defaults={
+                        'author': author,
+                        'category': category,
+                        'isbn': isbn,
+                        'quantity': quantity,
+                        'user': user  # Associate the book with the user
+                    }
+                )
 
-                try:
-                    quantity = int(quantity)
-                except ValueError:
-                    self.stdout.write(self.style.WARNING(f"Invalid quantity value for book '{title}'"))
-                    continue
+                # Print or log information about the imported books
+                self.stdout.write(self.style.SUCCESS(f'Updated quantity for book "{title}"'))
 
-                # Check if a book with the same ISBN already exists
-                existing_book = Book.objects.filter(isbn=isbn).first()
-                if existing_book:
-                    # If the book already exists, update its quantity
-                    existing_book.quantity += quantity
-                    existing_book.save()
-                    self.stdout.write(self.style.SUCCESS(f"Successfully updated quantity for book '{title}'"))
-                else:
-                    # If the book does not exist, create a new entry
-                    book = Book(title=title, author=author, category=category, isbn=isbn, quantity=quantity)
-                    book.save()
-                    self.stdout.write(self.style.SUCCESS(f"Successfully imported book '{title}'"))
+        # Clean up any temporary files if necessary
+        if os.path.exists(csv_file):
+            os.remove(csv_file)

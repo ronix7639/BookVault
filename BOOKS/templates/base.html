@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Management System</title>
+    <title>Book Vault</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'books/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -21,15 +22,31 @@
 
         header {
             background-color: #333;
-            color: #fff;
+            color: #87CEEB;
             padding: 10px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 55px;
         }
 
         header h1 {
             margin: 0;
+            display: flex;
+            align-items: center;
+            font-size: 38px;
+            
+        }
+
+        header img {
+            margin-right: 10px;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            padding-top: 10px;
+            margint-left: 10px;
         }
 
         .nav-links a {
@@ -73,6 +90,12 @@
             text-decoration: underline;
         }
 
+        .welcome-message {
+            font-size: 22px;
+            font-style: italic;
+            margin-right: 10px; 
+        }
+
         main {
             padding: 20px;
             flex: 1;
@@ -82,19 +105,24 @@
 
         .footer {
             background-color: #333;
-            color: #fff;
+            color: #87CEEB;
             text-align: center;
             padding: 10px 0;
+            margin-top: auto;
+
         }
     </style>
     {% block extra_head %}{% endblock %}
 </head>
 <body>
     <header>
-        <h1>Library Management System</h1>
+        <h1>
+            <img src="{% static 'images/logo.png' %}" alt="Logo" style="margin-right: 10px;">
+            <span style="padding-left: 22px; margin-top: 15px;">BOOK VAULT</span>
+        </h1>
         <div class="nav-links">
             {% if user.is_authenticated %}
-                <span>Welcome, {{ user.username }}</span>
+                <span class="welcome-message">You are logged in as {{ user.username }}</span>
                 <a href="{% url 'BOOKS:user_logout' %}" class="logout-button">Logout</a>
             {% else %}
                 <a href="{% url 'BOOKS:register' %}">Register</a>
@@ -109,10 +137,15 @@
         {% endif %}
     </nav>
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}
+        <div class="container">
+            <h2>Choose CRUD Operations below -</h2>
+            <!-- Removed Read and Update/Delete buttons -->
+        </div>
+        {% endblock %}
     </main>
     <footer class="footer">
-        &copy; 2024 Rohit Patiballa, Library Management System
+        &copy; 2024 Rohit Patiballa, BOOK VAULT
     </footer>
 </body>
 </html>
