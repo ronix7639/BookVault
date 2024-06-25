@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "z&pfuyy==-=dvp!-e4qr_b*pi=gy#dykqymir751!qmc3*od-j"
 DEBUG = True
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -83,7 +83,9 @@ LOGIN_URL = 'user_login'
 LOGIN_REDIRECT_URL = '/dashboard/'
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = 'D:\Rohit\Career\My Projects\Python\LibraryManagementSystem\static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Add your static files directory here
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Specify where collectstatic will put files
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

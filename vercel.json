@@ -25,7 +25,7 @@
     ],
     "env": {
       "DJANGO_SETTINGS_MODULE": "LibraryManagementSystem.settings.production",
-      "SECRET_KEY": "<your-secret-key>",
+      "SECRET_KEY": "z&pfuyy==-=dvp!-e4qr_b*pi=gy#dykqymir751!qmc3*od-j",
       "DEBUG": "false",
       "ALLOWED_HOSTS": "*.vercel.app"
     }
