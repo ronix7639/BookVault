@@ -26,7 +26,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
-ROOT_URLCONF = 'Librarymanagementsystem.urls'
+ROOT_URLCONF = 'LibraryManagementSystem.urls'
 
 TEMPLATES = [
     {
@@ -48,8 +48,8 @@ TEMPLATES = [
 
 
 
-WSGI_APPLICATION = 'Librarymanagementsystem.wsgi.application'
-ASGI_APPLICATION = 'Librarymanagementsystem.asgi.application'
+WSGI_APPLICATION = 'LibraryManagementSystem.wsgi.application'
+ASGI_APPLICATION = 'LibraryManagementSystem.asgi.application'
 
 DATABASES = {
     'default': {
